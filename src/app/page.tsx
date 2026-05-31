@@ -112,24 +112,27 @@ export default function Dashboard() {
   return (
     <main className="max-w-[1600px] mx-auto px-4 py-8 space-y-6">
       {/* Page Header */}
-      <header className="flex justify-between items-center pb-4 border-b border-zinc-800">
-        <div>
+      <div className="flex justify-between items-start pb-4 border-b border-zinc-800">
+        <div className="flex-1" />
+        <header className="flex-1 text-center">
           <h1 className="text-3xl font-extrabold tracking-tight text-vibrant-purple">
             AtlasGen
           </h1>
           <p className="text-sm text-zinc-400 mt-1">
             Build production-ready schemas and application specifications using multi-stage AI validation.
           </p>
-        </div>
+        </header>
         
         {/* Navigation Link to Evaluation Page */}
-        <Link
-          href="/evaluate"
-          className="px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-vibrant-pink rounded text-xs font-bold text-zinc-300 transition-colors"
-        >
-          Open AtlasGen Benchmarks
-        </Link>
-      </header>
+        <div className="flex-1 flex justify-end">
+          <Link
+            href="/evaluate"
+            className="px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-vibrant-pink rounded text-xs font-bold text-zinc-300 transition-colors"
+          >
+            Open AtlasGen Benchmarks
+          </Link>
+        </div>
+      </div>
 
       {/* Main dashboard splits */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
