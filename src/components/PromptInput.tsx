@@ -45,15 +45,15 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
   };
 
   return (
-    <div className="premium-card p-6">
-      <h2 className="text-xl font-bold mb-4 text-vibrant-purple flex items-center gap-2">
-        <span className="h-3 w-3 bg-vibrant-purple block rounded-full"></span>
+    <div className="premium-card p-6 animate-fade-in">
+      <h2 className="text-xl font-bold mb-4 flex items-center gap-2 bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent">
+        <span className="h-3 w-3 bg-gradient-to-r from-vibrant-purple to-vibrant-pink rounded-full inline-block"></span>
         AI Generation Request
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Prompt Input */}
-        <div>
+        <div className="animate-fade-in-up" style={{animationDelay: "0.1s"}}>
           <label className="block text-sm font-semibold text-zinc-400 mb-2">
             Natural Language prompt
           </label>
@@ -61,23 +61,23 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Type your application requirements here..."
-            className="w-full h-32 px-4 py-3 bg-[#09090b] border border-zinc-800 rounded-md text-sm text-[#fafafa] placeholder-zinc-600 focus:outline-none focus:border-vibrant-purple focus:ring-1 focus:ring-vibrant-purple resize-none"
+            className="w-full h-32 px-4 py-3 bg-gradient-to-br from-[#0a0a0d] to-[#09090b] border border-vibrant-purple/30 rounded-md text-sm text-[#fafafa] placeholder-zinc-600 focus:outline-none focus:border-vibrant-purple focus:ring-2 focus:ring-vibrant-purple/30 resize-none transition-all duration-300"
             disabled={isLoading}
           />
         </div>
 
         {/* Examples Presets */}
-        <div>
+        <div className="animate-fade-in-up" style={{animationDelay: "0.15s"}}>
           <label className="block text-sm font-semibold text-zinc-400 mb-2">
             Load Evaluation Benchmark Presets & Edge Cases
           </label>
           <div className="flex flex-wrap gap-2">
-            {PRESETS.map((preset) => (
+            {PRESETS.map((preset, idx) => (
               <button
                 key={preset.label}
                 type="button"
                 onClick={() => setPrompt(preset.prompt)}
-                className="px-2.5 py-1 text-xs bg-zinc-900 border border-zinc-850 hover:bg-zinc-850 hover:border-vibrant-pink rounded text-zinc-300 transition-colors"
+                className="px-2.5 py-1 text-xs bg-gradient-to-r from-zinc-900/50 to-zinc-900 border border-zinc-850 hover:border-vibrant-pink/50 hover:bg-zinc-850 rounded text-zinc-300 transition-all duration-300 hover:shadow-lg hover:shadow-vibrant-pink/10"
                 disabled={isLoading}
               >
                 {preset.label}
@@ -87,14 +87,14 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
         </div>
 
         {/* Gateway Config Router */}
-        <div className="border-t border-zinc-800/80 pt-4">
+        <div className="border-t border-zinc-800/80 pt-4 animate-fade-in-up" style={{animationDelay: "0.2s"}}>
           <label className="block text-xs uppercase tracking-wider font-bold text-zinc-500 mb-3">
             AI Gateway Routing Configuration
           </label>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Stage 1 Routing */}
-            <div className="bg-zinc-950 p-3 rounded-md border border-zinc-900">
+            <div className="bg-gradient-to-br from-vibrant-cyan/5 to-transparent p-3 rounded-md border border-vibrant-cyan/20 hover:border-vibrant-cyan/40 transition-all duration-300">
               <span className="block text-xs font-semibold text-vibrant-cyan mb-2">
                 Stage 1: Intent Routing
               </span>
@@ -104,7 +104,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
                   <select
                     value={stage1Pri}
                     onChange={(e) => setStage1Pri(e.target.value as ProviderId)}
-                    className="w-full bg-zinc-900 border border-zinc-800 text-xs py-1 px-1.5 rounded text-zinc-300"
+                    className="w-full bg-zinc-900 border border-vibrant-cyan/30 focus:border-vibrant-cyan/50 text-xs py-1 px-1.5 rounded text-zinc-300 transition-all duration-300"
                   >
                     {PROVIDERS.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -116,7 +116,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
                   <select
                     value={stage1Fall}
                     onChange={(e) => setStage1Fall(e.target.value as ProviderId)}
-                    className="w-full bg-zinc-900 border border-zinc-800 text-xs py-1 px-1.5 rounded text-zinc-300"
+                    className="w-full bg-zinc-900 border border-vibrant-cyan/30 focus:border-vibrant-cyan/50 text-xs py-1 px-1.5 rounded text-zinc-300 transition-all duration-300"
                   >
                     {PROVIDERS.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -127,7 +127,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
             </div>
 
             {/* Stage 2 Routing */}
-            <div className="bg-zinc-950 p-3 rounded-md border border-zinc-900">
+            <div className="bg-gradient-to-br from-vibrant-emerald/5 to-transparent p-3 rounded-md border border-vibrant-emerald/20 hover:border-vibrant-emerald/40 transition-all duration-300">
               <span className="block text-xs font-semibold text-vibrant-emerald mb-2">
                 Stage 2: Schema Routing
               </span>
@@ -137,7 +137,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
                   <select
                     value={stage2Pri}
                     onChange={(e) => setStage2Pri(e.target.value as ProviderId)}
-                    className="w-full bg-zinc-900 border border-zinc-800 text-xs py-1 px-1.5 rounded text-zinc-300"
+                    className="w-full bg-zinc-900 border border-vibrant-emerald/30 focus:border-vibrant-emerald/50 text-xs py-1 px-1.5 rounded text-zinc-300 transition-all duration-300"
                   >
                     {PROVIDERS.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -149,7 +149,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
                   <select
                     value={stage2Fall}
                     onChange={(e) => setStage2Fall(e.target.value as ProviderId)}
-                    className="w-full bg-zinc-900 border border-zinc-800 text-xs py-1 px-1.5 rounded text-zinc-300"
+                    className="w-full bg-zinc-900 border border-vibrant-emerald/30 focus:border-vibrant-emerald/50 text-xs py-1 px-1.5 rounded text-zinc-300 transition-all duration-300"
                   >
                     {PROVIDERS.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -160,7 +160,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
             </div>
 
             {/* Stage 3 Routing */}
-            <div className="bg-zinc-950 p-3 rounded-md border border-zinc-900">
+            <div className="bg-gradient-to-br from-vibrant-pink/5 to-transparent p-3 rounded-md border border-vibrant-pink/20 hover:border-vibrant-pink/40 transition-all duration-300">
               <span className="block text-xs font-semibold text-vibrant-pink mb-2">
                 Stage 3: AppSpec Routing
               </span>
@@ -170,7 +170,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
                   <select
                     value={stage3Pri}
                     onChange={(e) => setStage3Pri(e.target.value as ProviderId)}
-                    className="w-full bg-zinc-900 border border-zinc-800 text-xs py-1 px-1.5 rounded text-zinc-300"
+                    className="w-full bg-zinc-900 border border-vibrant-pink/30 focus:border-vibrant-pink/50 text-xs py-1 px-1.5 rounded text-zinc-300 transition-all duration-300"
                   >
                     {PROVIDERS.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -182,7 +182,7 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
                   <select
                     value={stage3Fall}
                     onChange={(e) => setStage3Fall(e.target.value as ProviderId)}
-                    className="w-full bg-zinc-900 border border-zinc-800 text-xs py-1 px-1.5 rounded text-zinc-300"
+                    className="w-full bg-zinc-900 border border-vibrant-pink/30 focus:border-vibrant-pink/50 text-xs py-1 px-1.5 rounded text-zinc-300 transition-all duration-300"
                   >
                     {PROVIDERS.map((p) => (
                       <option key={p} value={p}>{p}</option>
@@ -197,10 +197,18 @@ export default function PromptInput({ onSubmit, isLoading }: PromptInputProps) {
         {/* Action Button */}
         <button
           type="submit"
-          className="w-full py-3 px-4 bg-vibrant-purple border border-vibrant-indigo text-sm font-semibold rounded text-white hover:bg-vibrant-indigo disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full py-3 px-4 bg-gradient-to-r from-vibrant-purple via-vibrant-indigo to-vibrant-purple border border-vibrant-indigo/50 text-sm font-semibold rounded text-white hover:shadow-lg hover:shadow-vibrant-purple/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] animate-fade-in-up"
+          style={{animationDelay: "0.25s"}}
           disabled={isLoading || !prompt.trim()}
         >
-          {isLoading ? "Running AtlasGen..." : "Generate with AtlasGen"}
+          {isLoading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+              Running AtlasGen...
+            </span>
+          ) : (
+            "Generate with AtlasGen"
+          )}
         </button>
       </form>
     </div>

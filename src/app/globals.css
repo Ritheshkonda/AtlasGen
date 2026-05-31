@@ -35,13 +35,73 @@ body {
   background: #52525b;
 }
 
-/* Glassmorphism card look */
+/* Enhanced gradient card with animations */
 .premium-card {
-  background-color: #18181b;
-  border: 1px solid #27272a;
+  background: linear-gradient(135deg, #1a1a1d 0%, #18181b 50%, #1a1a1d 100%);
+  border: 1px solid rgba(147, 51, 234, 0.1);
   border-radius: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 50%, rgba(236, 72, 153, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .premium-card:hover {
-  border-color: #3f3f46;
+  border-color: rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, #1f1a2e 0%, #1a1a1d 50%, #2a1a2d 100%);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+}
+
+.premium-card:hover::before {
+  opacity: 1;
+}
+
+/* Smooth transitions for all interactive elements */
+button, input, select, textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loading indicator animation */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Smooth page transitions */
+main {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Smooth fade for cards in sequence */
+.card-stagger-1 { animation: fadeInUp 0.6s ease-out 0.1s backwards; }
+.card-stagger-2 { animation: fadeInUp 0.6s ease-out 0.2s backwards; }
+.card-stagger-3 { animation: fadeInUp 0.6s ease-out 0.3s backwards; }
+.card-stagger-4 { animation: fadeInUp 0.6s ease-out 0.4s backwards; }
+.card-stagger-5 { animation: fadeInUp 0.6s ease-out 0.5s backwards; }
+.card-stagger-6 { animation: fadeInUp 0.6s ease-out 0.6s backwards; }
+
+/* Status badge animations */
+.status-badge {
+  animation: scaleIn 0.4s ease-out;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

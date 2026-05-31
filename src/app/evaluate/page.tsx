@@ -262,19 +262,19 @@ export default function EvaluateDashboard() {
   return (
     <main className="max-w-[1400px] mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <header className="flex justify-between items-center pb-4 border-b border-zinc-800">
+      <header className="flex justify-between items-center pb-4 border-b border-zinc-800 animate-fade-in-down">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-vibrant-pink">
+          <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-vibrant-pink via-vibrant-purple to-vibrant-cyan bg-clip-text text-transparent">
             AtlasGen Benchmark Suite
           </h1>
-          <p className="text-sm text-zinc-400 mt-1">
+          <p className="text-sm text-zinc-400 mt-2">
             Standardized evaluation matrix auditing 7 primary frameworks and 4 distinct boundary test cases.
           </p>
         </div>
 
         <Link
           href="/"
-          className="px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-vibrant-purple rounded text-xs font-bold text-zinc-300 transition-colors"
+          className="px-4 py-2 bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 border border-vibrant-purple/30 hover:border-vibrant-pink/50 rounded text-xs font-bold text-zinc-300 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-vibrant-purple/20"
         >
           Return to AtlasGen
         </Link>
@@ -282,58 +282,58 @@ export default function EvaluateDashboard() {
 
       {/* Control bar & summary stats */}
       <section className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-        <div className="premium-card p-4">
+        <div className="premium-card p-4 card-stagger-1 hover:scale-105 transition-transform duration-300">
           <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">Benchmark Actions</span>
           <button
             onClick={startSuiteExecution}
-            className="w-full mt-2 py-2.5 px-4 bg-vibrant-pink hover:bg-pink-600 text-sm font-semibold rounded text-white disabled:opacity-50 transition-colors"
+            className="w-full mt-2 py-2.5 px-4 bg-gradient-to-r from-vibrant-pink to-vibrant-purple hover:shadow-lg hover:shadow-vibrant-pink/40 text-sm font-semibold rounded text-white disabled:opacity-50 transition-all duration-300 transform hover:scale-105 active:scale-95"
             disabled={isRunning}
           >
             {isRunning ? `Running: ${currentTestName}...` : "Execute Full Benchmark Suite"}
           </button>
         </div>
 
-        <div className="premium-card p-4">
+        <div className="premium-card p-4 card-stagger-2 hover:scale-105 transition-transform duration-300">
           <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">Success Ratio</span>
-          <div className="text-2xl font-mono font-bold mt-1 text-vibrant-emerald">
+          <div className="text-2xl font-mono font-bold mt-1 bg-gradient-to-r from-vibrant-emerald to-vibrant-cyan bg-clip-text text-transparent">
             {completedCount > 0 ? `${Math.round((successCount / completedCount) * 100)}%` : "0%"}
-            <span className="text-xs font-normal text-zinc-500 ml-1.5">
+            <span className="text-xs font-normal text-zinc-500 ml-1.5 block mt-1">
               ({successCount}/{completedCount} passed)
             </span>
           </div>
         </div>
 
-        <div className="premium-card p-4">
+        <div className="premium-card p-4 card-stagger-3 hover:scale-105 transition-transform duration-300">
           <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">Combined Latency</span>
-          <div className="text-2xl font-mono font-bold mt-1 text-vibrant-cyan">
+          <div className="text-2xl font-mono font-bold mt-1 bg-gradient-to-r from-vibrant-cyan to-vibrant-purple bg-clip-text text-transparent">
             {totalLatency}ms
-            <span className="text-xs font-normal text-zinc-500 ml-1.5">
+            <span className="text-xs font-normal text-zinc-500 ml-1.5 block mt-1">
               (~{(totalLatency / 1000).toFixed(1)}s total)
             </span>
           </div>
         </div>
 
-        <div className="premium-card p-4">
+        <div className="premium-card p-4 card-stagger-4 hover:scale-105 transition-transform duration-300">
           <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">Repairs Triggered</span>
-          <div className="text-2xl font-mono font-bold mt-1 text-vibrant-amber">
+          <div className="text-2xl font-mono font-bold mt-1 bg-gradient-to-r from-vibrant-amber to-vibrant-pink bg-clip-text text-transparent">
             {totalRepairs}
-            <span className="text-xs font-normal text-zinc-500 ml-1.5">interventions</span>
+            <span className="text-xs font-normal text-zinc-500 ml-1.5 block mt-1">interventions</span>
           </div>
         </div>
       </section>
 
       {/* Save Success Alert */}
       {savedPath && (
-        <div className="bg-vibrant-emerald/5 border border-vibrant-emerald/40 p-4 rounded text-xs text-vibrant-emerald font-mono">
+        <div className="bg-gradient-to-r from-vibrant-emerald/10 to-vibrant-cyan/10 border border-vibrant-emerald/40 p-4 rounded text-xs text-vibrant-emerald font-mono animate-fade-in-up shadow-lg shadow-vibrant-emerald/10">
           ✓ Export completed! Evaluation matrix saved directly to workspace root: <span className="font-bold underline">{savedPath}</span>
         </div>
       )}
 
       {/* Main Benchmarks Table */}
-      <section className="premium-card overflow-hidden">
+      <section className="premium-card overflow-hidden card-stagger-5 animate-fade-in">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
-            <tr className="bg-zinc-950 border-b border-zinc-800 text-zinc-400 font-bold uppercase tracking-wider text-[10px]">
+            <tr className="bg-gradient-to-r from-zinc-950 to-zinc-900 border-b border-zinc-800 text-zinc-400 font-bold uppercase tracking-wider text-[10px]">
               <th className="p-4">Benchmark Spec Name</th>
               <th className="p-4">Category</th>
               <th className="p-4">Latency (ms)</th>
@@ -344,24 +344,30 @@ export default function EvaluateDashboard() {
           </thead>
           <tbody className="divide-y divide-zinc-900 bg-zinc-950/20">
             {suite.map((test, idx) => (
-              <tr key={idx} className="hover:bg-zinc-950/60 font-sans">
+              <tr 
+                key={idx} 
+                className="hover:bg-zinc-950/60 font-sans transition-colors duration-300 animate-fade-in-up"
+                style={{
+                  animationDelay: `${idx * 0.05}s`
+                }}
+              >
                 <td className="p-4 font-bold text-zinc-200">{test.name}</td>
                 <td className="p-4">
-                  <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-mono ${
-                    test.category === "benchmark" ? "bg-vibrant-purple/10 text-vibrant-purple border border-vibrant-purple/20" :
-                    "bg-vibrant-pink/10 text-vibrant-pink border border-vibrant-pink/20"
+                  <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-mono transition-all duration-300 ${
+                    test.category === "benchmark" ? "bg-vibrant-purple/10 text-vibrant-purple border border-vibrant-purple/20 hover:border-vibrant-purple/50" :
+                    "bg-vibrant-pink/10 text-vibrant-pink border border-vibrant-pink/20 hover:border-vibrant-pink/50"
                   }`}>
                     {test.category}
                   </span>
                 </td>
-                <td className="p-4 font-mono font-semibold text-vibrant-cyan">{test.status !== "pending" ? `${test.latency}ms` : "-"}</td>
+                <td className="p-4 font-mono font-semibold bg-gradient-to-r from-vibrant-cyan/20 to-transparent bg-clip-text text-transparent">{test.status !== "pending" ? `${test.latency}ms` : "-"}</td>
                 <td className="p-4 font-mono font-semibold text-vibrant-amber">{test.status !== "pending" ? test.repairCount : "-"}</td>
                 <td className="p-4 text-zinc-400 truncate max-w-xs" title={test.prompt}>{test.prompt}</td>
                 <td className="p-4">
-                  <span className={`px-2 py-0.5 rounded uppercase font-bold text-[10px] font-mono ${
-                    test.status === "success" ? "bg-vibrant-emerald/10 text-vibrant-emerald border border-vibrant-emerald/30" :
-                    test.status === "failed" ? "bg-vibrant-rose/10 text-vibrant-rose border border-vibrant-rose/30" :
-                    test.status === "running" ? "bg-vibrant-amber/10 text-vibrant-amber border border-vibrant-amber/30" :
+                  <span className={`px-2 py-0.5 rounded uppercase font-bold text-[10px] font-mono transition-all duration-300 ${
+                    test.status === "success" ? "bg-vibrant-emerald/10 text-vibrant-emerald border border-vibrant-emerald/30 shadow-lg shadow-vibrant-emerald/10" :
+                    test.status === "failed" ? "bg-vibrant-rose/10 text-vibrant-rose border border-vibrant-rose/30 shadow-lg shadow-vibrant-rose/10" :
+                    test.status === "running" ? "bg-vibrant-amber/10 text-vibrant-amber border border-vibrant-amber/30 animate-pulse-soft shadow-lg shadow-vibrant-amber/10" :
                     "bg-zinc-900 text-zinc-500 border border-zinc-850"
                   }`}>
                     {test.status}
@@ -375,17 +381,17 @@ export default function EvaluateDashboard() {
 
       {/* Errors list */}
       {suite.some((t) => t.errors.length > 0) && (
-        <section className="premium-card p-6">
-          <h3 className="text-sm font-bold text-vibrant-rose uppercase tracking-wider mb-3">Benchmark Issue Report</h3>
+        <section className="premium-card p-6 card-stagger-6 animate-fade-in">
+          <h3 className="text-sm font-bold bg-gradient-to-r from-vibrant-rose to-vibrant-pink bg-clip-text text-transparent uppercase tracking-wider mb-3">Benchmark Issue Report</h3>
           <div className="space-y-2">
             {suite.map((test) => {
               if (test.errors.length === 0) return null;
               return (
-                <div key={test.name} className="p-3 bg-zinc-950 border border-vibrant-rose/20 rounded">
+                <div key={test.name} className="p-3 bg-gradient-to-r from-vibrant-rose/5 to-vibrant-pink/5 border border-vibrant-rose/20 rounded hover:border-vibrant-rose/40 transition-all duration-300">
                   <span className="font-bold text-vibrant-rose text-xs block mb-1">{test.name} Errors:</span>
                   <ul className="list-disc pl-5 space-y-1 font-mono text-[11px] text-zinc-400">
                     {test.errors.map((e, idx) => (
-                      <li key={idx}>{e}</li>
+                      <li key={idx} className="hover:text-zinc-300 transition-colors">{e}</li>
                     ))}
                   </ul>
                 </div>

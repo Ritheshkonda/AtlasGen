@@ -36,10 +36,10 @@ export default function RepairLogPanel({ job, onRepairTriggered }: RepairLogPane
   };
 
   return (
-    <div className="premium-card p-6">
+    <div className="premium-card p-6 animate-fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-vibrant-amber flex items-center gap-2">
-          <span className="h-3 w-3 bg-vibrant-amber block rounded-full"></span>
+        <h2 className="text-xl font-bold flex items-center gap-2 bg-gradient-to-r from-vibrant-amber to-vibrant-orange bg-clip-text text-transparent">
+          <span className="h-3 w-3 bg-gradient-to-r from-vibrant-amber to-vibrant-orange rounded-full inline-block"></span>
           Repair Engine Trace
         </h2>
 
@@ -47,20 +47,27 @@ export default function RepairLogPanel({ job, onRepairTriggered }: RepairLogPane
         {job.status === "failed" && (
           <button
             onClick={handleManualRepair}
-            className="px-3 py-1 bg-vibrant-amber hover:bg-yellow-600 text-zinc-950 text-xs font-bold rounded shadow transition-colors"
+            className="px-3 py-1 bg-gradient-to-r from-vibrant-amber to-vibrant-orange hover:shadow-lg hover:shadow-vibrant-amber/40 text-zinc-950 text-xs font-bold rounded transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50"
             disabled={isRepairing}
           >
-            {isRepairing ? "Repairing..." : "Trigger Consistency Repair"}
+            {isRepairing ? (
+              <span className="flex items-center gap-1">
+                <span className="h-3 w-3 animate-spin rounded-full border-2 border-zinc-950 border-t-transparent"></span>
+                Repairing...
+              </span>
+            ) : (
+              "Trigger Consistency Repair"
+            )}
           </button>
         )}
       </div>
 
       {logs.length === 0 ? (
-        <div className="bg-zinc-950 p-4 rounded text-xs text-zinc-500 text-center font-mono">
+        <div className="bg-gradient-to-r from-zinc-950 to-zinc-900/50 p-4 rounded text-xs text-zinc-500 text-center font-mono border border-zinc-900 animate-fade-in-up">
           No repair interventions required. Generated outputs matched schema constraints directly.
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-3 animate-fade-in-up">
           <div className="flex justify-between items-center text-xs text-zinc-400 mb-2">
             <span>Repair Log History: <strong className="text-vibrant-amber">{logs.length} operations</strong></span>
           </div>
@@ -69,7 +76,8 @@ export default function RepairLogPanel({ job, onRepairTriggered }: RepairLogPane
             {logs.map((log, idx) => (
               <div
                 key={idx}
-                className="p-3 bg-zinc-950 border border-zinc-900 rounded text-xs leading-relaxed font-sans"
+                className="p-3 bg-gradient-to-r from-zinc-950 to-zinc-900/40 border border-zinc-900 rounded text-xs leading-relaxed font-sans hover:border-vibrant-amber/30 hover:shadow-lg hover:shadow-vibrant-amber/10 transition-all duration-300 animate-fade-in-up"
+                style={{animationDelay: `${idx * 0.05}s`}}
               >
                 <div className="flex justify-between items-center mb-1">
                   <div className="flex items-center gap-2">
@@ -82,10 +90,10 @@ export default function RepairLogPanel({ job, onRepairTriggered }: RepairLogPane
                     </span>
                   </div>
                   <span
-                    className={`font-mono text-[9px] font-bold uppercase px-1.5 py-0.2 rounded ${
+                    className={`font-mono text-[9px] font-bold uppercase px-1.5 py-0.5 rounded transition-all duration-300 ${
                       log.outcome === "repaired"
-                        ? "bg-vibrant-emerald/10 text-vibrant-emerald border border-vibrant-emerald/30"
-                        : "bg-vibrant-rose/10 text-vibrant-rose border border-vibrant-rose/30"
+                        ? "bg-vibrant-emerald/10 text-vibrant-emerald border border-vibrant-emerald/30 hover:border-vibrant-emerald/50 hover:shadow-lg hover:shadow-vibrant-emerald/10"
+                        : "bg-vibrant-rose/10 text-vibrant-rose border border-vibrant-rose/30 hover:border-vibrant-rose/50 hover:shadow-lg hover:shadow-vibrant-rose/10"
                     }`}
                   >
                     {log.outcome}

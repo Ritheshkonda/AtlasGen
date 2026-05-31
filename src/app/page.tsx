@@ -112,13 +112,13 @@ export default function Dashboard() {
   return (
     <main className="max-w-[1600px] mx-auto px-4 py-8 space-y-6">
       {/* Page Header */}
-      <div className="flex justify-between items-start pb-4 border-b border-zinc-800">
+      <div className="flex justify-between items-start pb-4 border-b border-zinc-800 animate-fade-in-down">
         <div className="flex-1" />
         <header className="flex-1 text-center">
-          <h1 className="text-3xl font-extrabold tracking-tight text-vibrant-purple">
+          <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-vibrant-purple via-vibrant-pink to-vibrant-cyan bg-clip-text text-transparent">
             AtlasGen
           </h1>
-          <p className="text-sm text-zinc-400 mt-1">
+          <p className="text-sm text-zinc-400 mt-2">
             Build production-ready schemas and application specifications using multi-stage AI validation.
           </p>
         </header>
@@ -127,7 +127,7 @@ export default function Dashboard() {
         <div className="flex-1 flex justify-end">
           <Link
             href="/evaluate"
-            className="px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-vibrant-pink rounded text-xs font-bold text-zinc-300 transition-colors"
+            className="px-4 py-2 bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 border border-vibrant-purple/30 hover:border-vibrant-pink/50 rounded text-xs font-bold text-zinc-300 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-vibrant-purple/20"
           >
             Open AtlasGen Benchmarks
           </Link>
@@ -138,23 +138,33 @@ export default function Dashboard() {
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left column: Input and Progress panels */}
         <div className="lg:col-span-5 space-y-6">
-          <PromptInput onSubmit={handleGenerationSubmit} isLoading={isLoading} />
-          <StageProgress job={activeJob} />
+          <div className="card-stagger-1">
+            <PromptInput onSubmit={handleGenerationSubmit} isLoading={isLoading} />
+          </div>
+          <div className="card-stagger-2">
+            <StageProgress job={activeJob} />
+          </div>
         </div>
 
         {/* Right column: Specs and logs panels */}
         <div className="lg:col-span-7 space-y-6">
-          <AppSpecViewer job={activeJob} />
+          <div className="card-stagger-3">
+            <AppSpecViewer job={activeJob} />
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ValidationPanel job={activeJob} />
-            <RepairLogPanel job={activeJob} onRepairTriggered={handleManualRepairComplete} />
+            <div className="card-stagger-4">
+              <ValidationPanel job={activeJob} />
+            </div>
+            <div className="card-stagger-5">
+              <RepairLogPanel job={activeJob} onRepairTriggered={handleManualRepairComplete} />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Registry Panel footer */}
-      <section className="pt-4">
+      <section className="pt-4 card-stagger-6">
         <IntegrationViewer />
       </section>
     </main>
